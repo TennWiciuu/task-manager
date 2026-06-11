@@ -1,1 +1,3 @@
-123
+<?php
+echo "Projekt działa!";
+?>

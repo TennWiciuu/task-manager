@@ -1,6 +1,23 @@
 <?php
 return [
-  "login" => "Zaloguj się",
-  "register" => "Zarejestruj się",
-  "welcome" => "Zarządzaj swoimi zadaniami"
+  "login" => "Zaloguj",
+  "register" => "Zarejestruj",
+  "createAccount" => "Utwórz konto",
+  "username" => "Nazwa użytkownika",
+  "password" => "Hasło",
+
+  "logout" => "Wyloguj",
+  "menu" => "Menu",
+  "tasks" => "Zadania",
+  "completed" => "Zakończone",
+  "yourTasks" => "Twoje zadania",
+  "newTask" => "Nowe zadanie",
+  "add" => "Dodaj",
+  "exampleTask" => "Przykładowe zadanie",
+
+  "appName" => "Aplikacja menedżer zadań",
+  "desc" => "opis aplikacji",
+  "title" => "Tytuł",
+  "taskManager" => "Menedżer zadań",
+  "simpleSaaS" => "Prosta aplikacja SaaS"
 ];

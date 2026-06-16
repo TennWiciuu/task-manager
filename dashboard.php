@@ -1,10 +1,9 @@
 <?php
-require_once "lang.php";
+require_once __DIR__ . "/auth/auth.php";
+requireLogin();
 
-if (!isset($_SESSION['user'])) {
-    header("Location: login.php");
-    exit;
-}
+$lang = $_SESSION['lang'] ?? null;
+
 ?>
 
 <!DOCTYPE html>

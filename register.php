@@ -1,10 +1,13 @@
 <?php
-session_start();
+
+require_once __DIR__ . "/auth/auth.php";
+
 if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
+
 $langCode = $_SESSION['lang'] ?? 'pl';
-$lang = require "config/lang/$langCode.php";
+$lang = require __DIR__ . "/config/lang/$langCode.php";
 ?>
 
 <!DOCTYPE html>

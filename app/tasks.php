@@ -36,3 +36,15 @@ function deleteTask($conn, $taskId)
 
     return $query3->execute();
 }
+function completeTask($conn, $taskId)
+{
+    $stmt = $conn->prepare("
+        UPDATE tasks
+        SET status = 'completed'
+        WHERE id = ?
+    ");
+
+    $stmt->bind_param("i", $taskId);
+
+    return $stmt->execute();
+}

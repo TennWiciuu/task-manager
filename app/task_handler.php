@@ -1,6 +1,7 @@
 <?php
 
 require_once "tasks.php";
+require_once "../auth/auth.php";
 
 $userId = $_SESSION['user_id'];
 
@@ -8,12 +9,9 @@ if (isset($_POST['taskTitle'])) {
 
     $title = trim($_POST['taskTitle']);
 
-    if ($title === '') {
-        header("Location: ../dashboard.php");
-        exit();
+    if ($title !== '') {
+        addTask($conn, $userId, $title);
     }
-
-    addTask($conn, $userId, $title);
 
     header("Location: ../dashboard.php");
     exit();
@@ -22,6 +20,14 @@ if (isset($_POST['taskTitle'])) {
 if (isset($_POST['action']) && $_POST['action'] === 'delete') {
 
     deleteTask($conn, $_POST['task_id']);
+
+    header("Location: ../dashboard.php");
+    exit();
+}
+
+if (isset($_POST['action']) && $_POST['action'] === 'complete') {
+
+    completeTask($conn, $_POST['task_id']);
 
     header("Location: ../dashboard.php");
     exit();

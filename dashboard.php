@@ -12,6 +12,7 @@ require_once __DIR__ . "/app/tasks.php";
 $tasks = getTasks($conn, $_SESSION['user_id']);
 ?>
 <link rel="stylesheet" href="assets/style.css">
+<script src="assets/script.js" defer></script>
 <div class="dashboard">
 
     <aside class="sidebar">
@@ -38,12 +39,25 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
 
                     <?= htmlspecialchars($task['title']) ?>
 
-                    <form action="app/task_handler.php" method="POST">
-                        <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
-                        <button type="submit" name="action" value="delete">
-                            Usuń zadanie
-                        </button>
-                    </form>
+                    <button class="options-btn">Opcje</button>
+
+                    <div class="dropdown">
+
+                        <form action="app/task_handler.php" method="POST">
+                            <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
+                            <button type="submit" name="action" value="complete">
+                                Zakończ
+                            </button>
+                        </form>
+
+                        <form action="app/task_handler.php" method="POST">
+                            <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
+                            <button type="submit" name="action" value="delete">
+                                Usuń
+                            </button>
+                        </form>
+
+                    </div>
 
                     <p>
                         <?= $lang['status'] ?>:

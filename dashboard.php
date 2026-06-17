@@ -33,17 +33,20 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
         </form>
 
         <div class="tasks">
-            <?php if (!empty($tasks) && $tasks->num_rows > 0): ?>
-                <?php while ($task = $tasks->fetch_assoc()): ?>
-                    <div class="task">
-                        <?= htmlspecialchars($task['title']) ?>
-                    </div>
-                <?php endwhile; ?>
-            <?php else: ?>
+            <?php while ($task = $tasks->fetch_assoc()): ?>
                 <div class="task">
-                    <?= $lang["noTasks"] ?? "No tasks yet" ?>
+
+                    <?= htmlspecialchars($task['title']) ?>
+
+                    <form action="app/task_handler.php" method="POST">
+                        <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
+                        <button type="submit" name="action" value="delete">
+                            Usuń zadanie
+                        </button>
+                    </form>
+
                 </div>
-            <?php endif; ?>
+            <?php endwhile; ?>
         </div>
 
     </main>

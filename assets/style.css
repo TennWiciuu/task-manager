@@ -23,7 +23,7 @@ body {
 
 /* CARD */
 .card {
-  background: rgb(91, 91, 91);
+  background: rgb(193, 188, 173);
   padding: 20px;
   border-radius: 10px;
 }
@@ -44,7 +44,7 @@ body {
 }
 
 .sidebar {
-  background: #2f3640;
+  background: #f8edc8;
   color: rgb(29, 58, 108);
   padding: 20px;
 }
@@ -54,7 +54,7 @@ body {
 }
 
 .task {
-  background: rgb(99, 28, 111);
+  background: rgb(207, 202, 35);
   padding: 10px;
   margin-top: 10px;
   border-radius: 5px;

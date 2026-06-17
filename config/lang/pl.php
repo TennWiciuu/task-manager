@@ -19,5 +19,8 @@ return [
   "desc" => "opis aplikacji",
   "title" => "Tytuł",
   "taskManager" => "Menedżer zadań",
+  'completed' => 'Ukończone',
+  'pending' => 'W trakcie',
+  'status' => 'Status',
   "simpleSaaS" => "Prosta aplikacja SaaS"
 ];

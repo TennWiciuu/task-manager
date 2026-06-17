@@ -45,6 +45,13 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
                         </button>
                     </form>
 
+                    <p>
+                        <?= $lang['status'] ?>:
+                        <?= $task['status'] === 'completed'
+                            ? $lang['completed']
+                            : $lang['pending']; ?>
+                    </p>
+
                 </div>
             <?php endwhile; ?>
         </div>

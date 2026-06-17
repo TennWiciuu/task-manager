@@ -19,5 +19,8 @@ return [
   "desc" => "app description",
   "title" => "Title",
   "taskManager" => "Task Manager",
+  'completed' => 'Completed',
+  'pending' => 'Pending',
+  'status' => 'Status',
   "simpleSaaS" => "Simple SaaS App"
 ];

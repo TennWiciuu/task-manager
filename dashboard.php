@@ -17,32 +17,43 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
 
 <div class="app-shell">
     <header class="app-header">
+
         <div class="app-header-left">
-            <div class="app-logo">Task Manager</div>
-            <div class="app-badge">Twoje zadania w jednym miejscu</div>
+            <div class="app-logo">Dashboard</div>
+            <div class="app-badge">Task manager</div>
         </div>
 
         <div class="app-header-right">
             <a class="btn btn-ghost" href="auth/logout.php">Logout</a>
         </div>
+
     </header>
 
     <div class="app-body">
+
         <aside class="sidebar">
-            <h2 class="sidebar-title"><?= $lang["menu"] ?? "Menu" ?></h2>
+
             <div class="sidebar-links">
-                <a class="sidebar-link" href="auth/logout.php">Wyloguj</a>
+                <a class="sidebar-link <?= (!isset($_GET['filter']) || $_GET['filter'] === 'all') ? 'active' : '' ?>" href="?filter=all">
+                    Wszystkie
+                </a>
+
+                <a class="sidebar-link <?= (($_GET['filter'] ?? '') === 'active') ? 'active' : '' ?>" href="?filter=active">
+                    Aktywne
+                </a>
+
+                <a class="sidebar-link <?= (($_GET['filter'] ?? '') === 'completed') ? 'active' : '' ?>" href="?filter=completed">
+                    Ukończone
+                </a>
             </div>
+
         </aside>
 
         <main class="content">
-            <div class="page-title">
-                <h1><?= $lang["yourTasks"] ?? "Your Tasks" ?></h1>
-                <div class="page-sub">Dodawaj, edytuj i zamykaj zadania</div>
-            </div>
 
             <section class="panel">
                 <div class="panel-title">Dodaj zadanie</div>
+
                 <form action="app/task_handler.php" method="POST" class="panel-form">
                     <input class="input" type="text" name="taskTitle" placeholder="<?= $lang["newTask"] ?? "New task" ?>">
                     <button class="btn btn-primary" type="submit"><?= $lang["add"] ?? "Add" ?></button>
@@ -50,7 +61,9 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
 
                 <?php if (isset($_SESSION['edit_task_id'])): ?>
                     <div class="panel-divider"></div>
+
                     <div class="panel-title">Edytuj tytuł</div>
+
                     <form action="app/task_handler.php" method="POST" class="panel-form">
                         <input type="hidden" name="task_id" value="<?= $_SESSION['edit_task_id'] ?>">
                         <input class="input" type="text" name="new_title" placeholder="Nowy tytuł">
@@ -59,19 +72,13 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                 <?php endif; ?>
             </section>
 
-            <section class="panel">
-                <div class="panel-title">Filtry</div>
-                <div class="filters">
-                    <a class="filter-link" href="?filter=all">Wszystkie</a>
-                    <a class="filter-link" href="?filter=active">Aktywne</a>
-                    <a class="filter-link" href="?filter=completed">Ukończone</a>
-                </div>
-            </section>
-
             <section class="tasks">
+
                 <?php while ($task = $tasks->fetch_assoc()): ?>
                     <div class="task-card">
+
                         <div class="task-card-top">
+
                             <div class="task-title">
                                 <?= htmlspecialchars($task['title']) ?>
                             </div>
@@ -80,6 +87,7 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                                 <button class="options-btn">⋮</button>
 
                                 <div class="dropdown">
+
                                     <form action="app/task_handler.php" method="POST">
                                         <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
                                         <button class="dropdown-btn" type="submit" name="action" value="complete">
@@ -100,8 +108,10 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                                             Edytuj tytuł
                                         </button>
                                     </form>
+
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="task-meta">
@@ -112,9 +122,13 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                                     : $lang['pending']; ?>
                             </span>
                         </div>
+
                     </div>
                 <?php endwhile; ?>
+
             </section>
+
         </main>
+
     </div>
 </div>

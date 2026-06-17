@@ -21,7 +21,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
 
 <body class="index-landing">
     <header class="header">
-        <div class="saas-wrap" style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;">
+        <div class="app-wrap" style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;">
             <div class="logo"><?= $lang["appName"] ?></div>
 
             <nav class="nav">
@@ -31,8 +31,8 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         </div>
     </header>
 
-    <main class="saas-hero">
-        <div class="saas-wrap">
+    <main class="app-hero">
+        <div class="app-wrap">
             <div class="hero-grid">
                 <section>
 
@@ -49,7 +49,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         </div>
 
         <section class="section">
-            <div class="saas-wrap">
+            <div class="app-wrap">
                 <h3>Everything you need to run your day</h3>
                 <p class="lead">A SaaS-style workflow built around one thing: finishing tasks.</p>
 
@@ -74,7 +74,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         </section>
 
         <section class="section">
-            <div class="saas-wrap">
+            <div class="app-wrap">
                 <h3>How it works</h3>
                 <p class="lead">From signup to productive tasks in minutes.</p>
 
@@ -99,7 +99,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         </section>
 
         <section class="section">
-            <div class="saas-wrap">
+            <div class="app-wrap">
                 <h3>About this portfolio app</h3>
                 <p class="lead">This landing page is a UI-only view. The actual app logic lives in the PHP files: authentication (login/register) and the task workflow on the dashboard.</p>
 
@@ -125,7 +125,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
     </main>
 
     <footer>
-        <div class="saas-wrap footer-grid">
+        <div class="app-wrap footer-grid">
             <div>
                 <b style="color:rgba(255,255,255,.86)"><?php echo $lang["appName"] ?></b>
                 <div class="muted">© <?php echo date('Y'); ?> Task Manager</div>

@@ -15,10 +15,10 @@ return [
   "add" => "Dodaj",
   "exampleTask" => "Przykładowe zadanie",
 
-  "appName" => "Aplikacja menedżer zadań",
+  "appName" => "Menedżer zadań",
   "desc" => "opis aplikacji",
   "title" => "Tytuł",
-  "taskManager" => "Menedżer zadań",
+  "taskManager" => "Menedżer zadań stworzony przez Wiktor Przygodzki",
   'completed' => 'Ukończone',
   'pending' => 'W trakcie',
   'status' => 'Status',

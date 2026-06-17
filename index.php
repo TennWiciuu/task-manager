@@ -24,6 +24,9 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         <div class="app-wrap" style="display:flex;justify-content:space-between;align-items:center;width:100%;gap:16px;">
             <div class="logo"><?= $lang["appName"] ?></div>
 
+            
+            <p>Repozytorium projektu na GitHub: <a href="https://github.com/TennWiciuu/task-manager">link</a></p>
+
             <nav class="nav">
                 <a href="?lang=pl">PL</a>
                 <a href="?lang=en">EN</a>
@@ -142,7 +145,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
                 <div class="app-wrap footer-grid">
             <div>
                 <b style="color:rgba(255,255,255,.86)"><?php echo $lang["appName"] ?></b>
-                <div class="muted">© <?php echo date('Y'); ?> <?php echo htmlspecialchars($lang["taskManager"] ?? "Task Manager"); ?></div>
+                <div class="muted">© <?php echo date('Y'); ?> <?php echo htmlspecialchars($lang["taskManager"] ?? "Task Manager created by Wiktor Przygodzki"); ?></div>
 
             </div>
         </div>

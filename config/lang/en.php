@@ -15,10 +15,10 @@ return [
   "add" => "Add",
   "exampleTask" => "Example task",
 
-  "appName" => "Task manager app",
+  "appName" => "Task manager",
   "desc" => "app description",
   "title" => "Title",
-  "taskManager" => "Task Manager",
+  "taskManager" => "Task Manager created by Wiktor Przygodzki",
   'completed' => 'Completed',
   'pending' => 'Pending',
   'status' => 'Status',

@@ -23,22 +23,33 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         <div class="auth-top">
             <div class="auth-brand">&nbsp;</div>
             <h1 class="auth-title"><?= $lang["login"] ?></h1>
-            <div class="auth-sub">Zaloguj się, aby zarządzać zadaniami</div>
+            <div class="auth-sub"><?= $lang["loginSubtitle"] ?? "Create account" ?></div>
         </div>
 
-        <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid'): ?>
-            <div class="auth-error">Logowanie się nie powiodło, sprawdź nazwę użytkownika lub hasło</div>
+        <?php
+        $errorCode = $_GET['error'] ?? null;
+        $errorKey = null;
+
+        if ($errorCode === 'invalid') {
+            $errorKey = $lang['errorInvalid'];
+        } elseif ($errorCode === 'empty') {
+            $errorKey = $lang['errorEmpty'];
+        }
+        if ($errorKey && isset($lang[$errorKey])): ?>
+            <div class="auth-error"><?= htmlspecialchars($lang[$errorKey]) ?></div>
         <?php endif; ?>
+
 
         <form action="auth/login_handler.php" method="POST" class="auth-form">
             <input type="text" name="username" placeholder="<?= $lang["username"] ?? "Username" ?>">
             <input type="password" name="password" placeholder="<?= $lang["password"] ?? "Password" ?>">
-            <button type="submit" class="btn btn-primary"><?= $lang["login"] ?></button>
+            <button type="submit" class="btn btn-primary"><?= $lang["ctaLogin"] ?? $lang["login"] ?></button>
+
         </form>
 
         <div class="auth-footer">
-            <span>Nie masz konta?</span>
-            <a class="auth-link" href="register.php">Utwórz konto</a>
+            <span><?= $lang["loginFooterPrompt"] ?? "Have account already?" ?></span>
+            <a class="auth-link" href="register.php"><?= $lang["createAccountTip"] ?? "Create account" ?></a>
         </div>
     </div>
 

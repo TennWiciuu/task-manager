@@ -19,13 +19,15 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
     <header class="app-header">
 
         <div class="app-header-left">
-            <div class="app-logo">Dashboard</div>
-            <div class="app-badge">Task manager</div>
+            <div class="app-logo"><?= $lang["taskManager"] ?? "Dashboard" ?></div>
+            <div class="app-badge"><?= $lang["taskManager"] ?? "Task manager" ?></div>
+
         </div>
 
         <div class="app-header-right">
-            <a class="btn btn-ghost" href="auth/logout.php">Logout</a>
+            <a class="btn btn-ghost" href="auth/logout.php"><?= $lang["logout"] ?? "Logout" ?></a>
         </div>
+
 
     </header>
 
@@ -35,16 +37,19 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
 
             <div class="sidebar-links">
                 <a class="sidebar-link <?= (!isset($_GET['filter']) || $_GET['filter'] === 'all') ? 'active' : '' ?>" href="?filter=all">
-                    Wszystkie
+                    <?= $lang["allTasks"] ?? "All" ?>
                 </a>
+
 
                 <a class="sidebar-link <?= (($_GET['filter'] ?? '') === 'active') ? 'active' : '' ?>" href="?filter=active">
-                    Aktywne
+                    <?= $lang["active"] ?? "Active" ?>
                 </a>
 
+
                 <a class="sidebar-link <?= (($_GET['filter'] ?? '') === 'completed') ? 'active' : '' ?>" href="?filter=completed">
-                    Ukończone
+                    <?= $lang["completed"] ?? "Completed" ?>
                 </a>
+
             </div>
 
         </aside>
@@ -52,22 +57,27 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
         <main class="content">
 
             <section class="panel">
-                <div class="panel-title">Dodaj zadanie</div>
+                <div class="panel-title"><?= $lang["addTask"] ?? "Add task" ?></div>
+
 
                 <form action="app/task_handler.php" method="POST" class="panel-form">
                     <input class="input" type="text" name="taskTitle" placeholder="<?= $lang["newTask"] ?? "New task" ?>">
-                    <button class="btn btn-primary" type="submit"><?= $lang["add"] ?? "Add" ?></button>
+                    <button class="btn btn-primary" type="submit"><?= $lang["add"] ?? ($lang["addTask"] ?? "Add") ?></button>
+
                 </form>
 
                 <?php if (isset($_SESSION['edit_task_id'])): ?>
                     <div class="panel-divider"></div>
 
-                    <div class="panel-title">Edytuj tytuł</div>
+                    <div class="panel-title"><?= $lang["editTaskTitle"] ?? "Edit task title" ?></div>
+
 
                     <form action="app/task_handler.php" method="POST" class="panel-form">
                         <input type="hidden" name="task_id" value="<?= $_SESSION['edit_task_id'] ?>">
-                        <input class="input" type="text" name="new_title" placeholder="Nowy tytuł">
+                        <input class="input" type="text" name="new_title" placeholder="<?= $lang["newTitle"] ?? "New title" ?>">
+
                         <button class="btn btn-primary" type="submit" name="action" value="update">Zapisz</button>
+
                     </form>
                 <?php endif; ?>
             </section>
@@ -91,22 +101,27 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                                     <form action="app/task_handler.php" method="POST">
                                         <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
                                         <button class="dropdown-btn" type="submit" name="action" value="complete">
-                                            Zakończ
+                                            <?= $lang["complete"] ?? "Complete" ?>
                                         </button>
+
                                     </form>
 
                                     <form action="app/task_handler.php" method="POST">
                                         <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
                                         <button class="dropdown-btn" type="submit" name="action" value="delete">
-                                            Usuń
+                                            <?= $lang["delete"] ?? "Delete" ?>
                                         </button>
+
                                     </form>
 
                                     <form action="app/task_handler.php" method="POST">
                                         <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
                                         <button class="dropdown-btn" type="submit" name="action" value="edit">
-                                            Edytuj tytuł
+                                            <?= $lang["edit"] ?? "Edit" ?>
+
                                         </button>
+
+
                                     </form>
 
                                 </div>
@@ -115,12 +130,13 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
                         </div>
 
                         <div class="task-meta">
-                            <span class="task-meta-label"><?= $lang['status'] ?>:</span>
+                            <span class="task-meta-label"><?= htmlspecialchars($lang['status'] ?? 'Status') ?>:</span>
                             <span class="task-meta-value">
                                 <?= $task['status'] === 'completed'
-                                    ? $lang['completed']
-                                    : $lang['pending']; ?>
+                                    ? htmlspecialchars($lang['completed'] ?? 'Completed')
+                                    : htmlspecialchars($lang['pending'] ?? 'Pending'); ?>
                             </span>
+
                         </div>
 
                     </div>

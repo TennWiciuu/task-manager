@@ -4,6 +4,12 @@ if (isset($_GET['lang'])) {
     $_SESSION['lang'] = $_GET['lang'];
 }
 
-$lang = $_SESSION['lang'] ?? 'pl';
+$langCode = $_SESSION['lang'] ?? 'pl';
 
-return require "/config/lang/$lang.php";
+$file = __DIR__ . "/config/lang/$langCode.php";
+
+if (!file_exists($file)) {
+    $file = __DIR__ . "/config/lang/pl.php";
+}
+
+return require $file;

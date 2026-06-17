@@ -24,21 +24,47 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
     <div class="auth-container">
         <div class="auth-top">
             <h1 class="auth-title"><?= $lang["register"] ?></h1>
-            <div class="auth-sub">Załóż konto i zacznij pracować nad zadaniami</div>
+            <div class="auth-sub"><?= $lang["registerSubtitle"] ?? "" ?></div>
         </div>
 
+
+        <?php
+        $errorMap = [
+            'username_length' => 'errorUsernameLength',
+            'password_length' => 'errorPasswordLength',
+            'password_format' => 'errorPasswordFormat',
+            'username_taken' => 'errorUsernameTaken',
+            'register_failed' => 'errorRegisterFailed',
+        ];
+
+        $successCode = $_GET['success'] ?? null;
+
+        $successKey = null;
+        if ($successCode === 'registered') {
+            $successKey = 'successRegistered';
+        }
+
+        $errorCode = $_GET['error'] ?? null;
+        if ($errorCode && isset($errorMap[$errorCode]) && isset($lang[$errorMap[$errorCode]])) {
+            echo '<div class="auth-error">' . htmlspecialchars($lang[$errorMap[$errorCode]]) . '</div>';
+        } elseif ($successKey && isset($lang[$successKey])) {
+            echo '<div class="auth-success">' . htmlspecialchars($lang[$successKey]) . '</div>';
+        }
+        ?>
+
         <form action="auth/register_handler.php" method="POST" class="auth-form">
+
             <input type="text"
-                   name="username"
-                   id="username"
-                   placeholder="<?= $lang["username"] ?? "Username" ?>">
+                name="username"
+                id="username"
+                placeholder="<?= $lang["username"] ?? "Username" ?>">
 
             <p id="username-status"></p>
 
             <input type="password"
-                   name="password"
-                   id="password"
-                   placeholder="<?= $lang["password"] ?? "Password" ?>">
+                name="password"
+                id="password"
+                placeholder="<?= $lang["password"] ?? "Password" ?>">
 
             <p id="password-status"></p>
 
@@ -48,8 +74,8 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         </form>
 
         <div class="auth-footer">
-            <span>Masz już konto?</span>
-            <a class="auth-link" href="login.php">Zaloguj się</a>
+            <span><?= $lang["registerFooterPrompt"] ?? "Have account already?" ?></span>
+            <a class="auth-link" href="login.php"><?= $lang["logIn2"] ?? "Log in" ?></a>
         </div>
     </div>
 

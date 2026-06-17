@@ -13,7 +13,6 @@ return [
   "yourTasks" => "Twoje zadania",
   "newTask" => "Nowe zadanie",
   "add" => "Dodaj",
-  "exampleTask" => "Przykładowe zadanie",
 
   "appName" => "Menedżer zadań",
   "desc" => "opis aplikacji",
@@ -22,13 +21,12 @@ return [
   'completed' => 'Ukończone',
   'pending' => 'W trakcie',
   'status' => 'Status',
-  "simpleSaaS" => "Prosta aplikacja SaaS",
 
   "feature" => "FUNKCJA",
 
   "everythingYouNeed" => "Wszystko, czego potrzebujesz, by poprowadzić dzień",
 
-  "workflowSaaS" => "Workflow w stylu SaaS zbudowany wokół jednego celu: kończenia zadań.",
+  "workflowSaaS" => "Workflow zbudowany wokół jednego celu: kończenia zadań.",
 
 
   "featureFast" => "Szybkie dodawanie zadań",

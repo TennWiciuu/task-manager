@@ -13,7 +13,6 @@ return [
   "yourTasks" => "Your Tasks",
   "newTask" => "New task",
   "add" => "Add",
-  "exampleTask" => "Example task",
 
   "appName" => "Task manager",
   "desc" => "app description",
@@ -22,13 +21,12 @@ return [
   'completed' => 'Completed',
   'pending' => 'Pending',
   'status' => 'Status',
-  "simpleSaaS" => "Simple SaaS App",
 
   "feature" => "FEATURE",
 
   "everythingYouNeed" => "Everything you need to run your day",
 
-  "workflowSaaS" => "A SaaS-style workflow built around one thing: finishing tasks.",
+  "workflowSaaS" => "A workflow built around one thing: finishing tasks.",
 
 
   "featureFast" => "Fast task creation",

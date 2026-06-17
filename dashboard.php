@@ -19,8 +19,8 @@ $tasks = getTasks($conn, $_SESSION['user_id'], $filter);
     <header class="app-header">
 
         <div class="app-header-left">
-            <div class="app-logo"><?= $lang["taskManager"] ?? "Dashboard" ?></div>
-            <div class="app-badge"><?= $lang["taskManager"] ?? "Task manager" ?></div>
+            <div class="app-logo"><?= $lang["appName"] ?? "Dashboard" ?></div>
+            <div class="app-badge"><?= $lang["everythingYouNeed"] ?? "Task manager" ?></div>
 
         </div>
 

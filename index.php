@@ -55,7 +55,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
         <section class="section">
             <div class="app-wrap">
                 <h3><?= $lang["everythingYouNeed"] ?? "Everything you need to run your day" ?></h3>
-                <p class="lead"><?= $lang["workflowSaaS"] ?? "A SaaS-style workflow built around one thing: finishing tasks." ?></p>
+                <p class="lead"><?= $lang["workflowSaaS"] ?? "A workflow built around one thing: finishing tasks." ?></p>
 
 
                 <div class="grid-3">

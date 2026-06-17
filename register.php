@@ -12,6 +12,7 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
 
 <!DOCTYPE html>
 <html>
+<script src="assets/script.js" defer></script>
 
 <head>
     <link rel="stylesheet" href="assets/style.css">
@@ -21,15 +22,31 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
 
     <div class="auth-container">
 
-        <h1><?= $lang["register"] ?></h1>
+    <h1><?= $lang["register"] ?></h1>
 
-        <form action="auth/register_handler.php" method="POST">
-            <input type="text" name="username" placeholder="<?= $lang["username"] ?? "Username" ?>">
-            <input type="password" name="password" placeholder="<?= $lang["password"] ?? "Password" ?>">
-            <button type="submit"><?= $lang["createAccount"] ?? "Create account" ?></button>
-        </form>
+    <form action="auth/register_handler.php" method="POST">
 
-    </div>
+        <input type="text"
+               name="username"
+               id="username"
+               placeholder="<?= $lang["username"] ?? "Username" ?>">
+
+        <p id="username-status"></p>
+
+        <input type="password"
+               name="password"
+               id="password"
+               placeholder="<?= $lang["password"] ?? "Password" ?>">
+
+        <p id="password-status"></p>
+
+        <button type="submit" id="register-btn">
+            <?= $lang["createAccount"] ?? "Create account" ?>
+        </button>
+
+    </form>
+
+</div>
 
 </body>
 

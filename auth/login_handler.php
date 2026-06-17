@@ -13,25 +13,25 @@ $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
 
 if (!$username || !$password) {
-    header("Location: ../login.php");
+    header("Location: ../login.php?error=empty");
     exit();
 }
 
-$query1 = $conn->prepare("
-    SELECT * FROM users WHERE username = ?
-");
+$stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
 
-$query1->bind_param("s", $username);
-$query1->execute();
-
-$result = $query1->get_result();
+$result = $stmt->get_result();
 $user = $result->fetch_assoc();
-//$user['password'] = users.password z bazy danych
+
 if ($user && password_verify($password, $user['password'])) {
+
     loginUser($user);
     header("Location: ../dashboard.php");
     exit();
+
 } else {
-    header("Location: ../login.php");
+
+    header("Location: ../login.php?error=invalid");
     exit();
 }

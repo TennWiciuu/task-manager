@@ -23,6 +23,12 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
 
         <h1><?= $lang["login"] ?></h1>
 
+        <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid'): ?>
+            <p style="color:red;">
+                Logowanie się nie powiodło, sprawdź nazwę użytkownika lub hasło
+            </p>
+        <?php endif; ?>
+
         <form action="auth/login_handler.php" method="POST">
             <input type="text" name="username" placeholder="<?= $lang["username"] ?? "Username" ?>">
             <input type="password" name="password" placeholder="<?= $lang["password"] ?? "Password" ?>">

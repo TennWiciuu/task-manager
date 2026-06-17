@@ -1,13 +1,7 @@
 <?php
 
 require_once __DIR__ . "/auth.php";
-
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "task_manager";
-
-$conn = new mysqli($host, $user, $pass, $db);
+require_once __DIR__ . "/../config/config.php";
 
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';
@@ -27,6 +21,7 @@ $user = $result->fetch_assoc();
 if ($user && password_verify($password, $user['password'])) {
 
     loginUser($user);
+
     header("Location: ../dashboard.php");
     exit();
 

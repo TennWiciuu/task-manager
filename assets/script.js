@@ -17,7 +17,18 @@ document.addEventListener("DOMContentLoaded", function () {
             btn.addEventListener("click", function (e) {
                 e.stopPropagation();
 
-                const dropdown = this.nextElementSibling;
+                // Preferuj dropdown jako następny element, ale jeśli HTML/czasy renderowania
+                // zmienią strukturę, to próbuj też po relacji po wrapperze.
+                let dropdown = this.nextElementSibling;
+                if (!dropdown || !dropdown.classList.contains("dropdown")) {
+                    const card = this.closest(".task-card");
+                    if (card) {
+                        dropdown = card.querySelector(":scope > .dropdown") || card.querySelector(".dropdown");
+                    }
+                }
+
+                if (!dropdown) return;
+
                 dropdown.classList.toggle("show");
 
                 document.querySelectorAll(".dropdown").forEach((d) => {
@@ -34,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         });
     }
+
 
     function initUsernameCheck() {
 

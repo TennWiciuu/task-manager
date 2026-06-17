@@ -17,24 +17,29 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
     <link rel="stylesheet" href="assets/style.css">
 </head>
 
-<body>
+<body class="auth-bg">
 
     <div class="auth-container">
-
-        <h1><?= $lang["login"] ?></h1>
+        <div class="auth-top">
+            <div class="auth-brand">&nbsp;</div>
+            <h1 class="auth-title"><?= $lang["login"] ?></h1>
+            <div class="auth-sub">Zaloguj się, aby zarządzać zadaniami</div>
+        </div>
 
         <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid'): ?>
-            <p style="color:red;">
-                Logowanie się nie powiodło, sprawdź nazwę użytkownika lub hasło
-            </p>
+            <div class="auth-error">Logowanie się nie powiodło, sprawdź nazwę użytkownika lub hasło</div>
         <?php endif; ?>
 
-        <form action="auth/login_handler.php" method="POST">
+        <form action="auth/login_handler.php" method="POST" class="auth-form">
             <input type="text" name="username" placeholder="<?= $lang["username"] ?? "Username" ?>">
             <input type="password" name="password" placeholder="<?= $lang["password"] ?? "Password" ?>">
-            <button type="submit"><?= $lang["login"] ?></button>
+            <button type="submit" class="btn btn-primary"><?= $lang["login"] ?></button>
         </form>
 
+        <div class="auth-footer">
+            <span>Nie masz konta?</span>
+            <a class="auth-link" href="register.php">Utwórz konto</a>
+        </div>
     </div>
 
 </body>

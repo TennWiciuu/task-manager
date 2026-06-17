@@ -1,13 +1,21 @@
 <?php
 
 require_once __DIR__ . "/auth.php";
+require_once __DIR__ . "/../config/config.php";
 
-$host = "localhost";
-$user = "root";
-$pass = "";
-$db = "task_manager";
+if (isset($_POST['check_username'])) {
 
-$conn = new mysqli($host, $user, $pass, $db);
+    $username = $_POST['username'] ?? '';
+
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+
+    echo ($result->num_rows > 0) ? "taken" : "free";
+    exit();
+}
 
 $username = $_POST['username'] ?? '';
 $password = $_POST['password'] ?? '';

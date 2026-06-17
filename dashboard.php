@@ -9,7 +9,8 @@ $lang = require __DIR__ . "/config/lang/$langCode.php";
 
 require_once __DIR__ . "/app/tasks.php";
 
-$tasks = getTasks($conn, $_SESSION['user_id']);
+$filter = $_GET['filter'] ?? 'all';
+$tasks = getTasks($conn, $_SESSION['user_id'], $filter);
 ?>
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/script.js" defer></script>
@@ -17,10 +18,6 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
 
     <aside class="sidebar">
         <h2><?= $lang["menu"] ?? "Menu" ?></h2>
-
-        <a href="#"><?= $lang["tasks"] ?? "Tasks" ?></a>
-        <a href="#"><?= $lang["completed"] ?? "Completed" ?></a>
-
         <a href="auth/logout.php"><?= $lang["logout"] ?? "Logout" ?></a>
     </aside>
 
@@ -46,6 +43,14 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
             </form>
 
         <?php endif; ?>
+
+        <div class="filters">
+
+            <a href="?filter=all">Wszystkie</a>
+            <a href="?filter=active">Aktywne</a>
+            <a href="?filter=completed">Ukończone</a>
+
+        </div>
 
         <div class="tasks">
             <?php while ($task = $tasks->fetch_assoc()): ?>

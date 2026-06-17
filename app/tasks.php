@@ -18,15 +18,23 @@ function addTask($conn, $userId, $title)
 
     return $query1->execute();
 }
-
-function getTasks($conn, $userId)
+function getTasks($conn, $userId, $filter = 'all')
 {
-    $query2 = $conn->prepare("SELECT * FROM tasks WHERE user_id = ?");
+    $sql = "SELECT * FROM tasks WHERE user_id = ?";
 
-    $query2->bind_param("i", $userId);
-    $query2->execute();
+    if ($filter === 'active') {
+        $sql .= " AND status = 'pending'";
+    }
 
-    return $query2->get_result();
+    if ($filter === 'completed') {
+        $sql .= " AND status = 'completed'";
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $userId);
+    $stmt->execute();
+
+    return $stmt->get_result();
 }
 function deleteTask($conn, $taskId)
 {

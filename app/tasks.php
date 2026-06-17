@@ -48,3 +48,15 @@ function completeTask($conn, $taskId)
 
     return $stmt->execute();
 }
+function updateTaskTitle($conn, $taskId, $title)
+{
+    $stmt = $conn->prepare("
+        UPDATE tasks
+        SET title = ?
+        WHERE id = ?
+    ");
+
+    $stmt->bind_param("si", $title, $taskId);
+
+    return $stmt->execute();
+}

@@ -32,3 +32,26 @@ if (isset($_POST['action']) && $_POST['action'] === 'complete') {
     header("Location: ../dashboard.php");
     exit();
 }
+
+if (isset($_POST['action']) && $_POST['action'] === 'edit') {
+
+    $_SESSION['edit_task_id'] = $_POST['task_id'];
+
+    header("Location: ../dashboard.php");
+    exit();
+}
+
+if (isset($_POST['action']) && $_POST['action'] === 'update') {
+
+    $taskId = $_POST['task_id'];
+    $newTitle = trim($_POST['new_title']);
+
+    if ($newTitle !== '') {
+        updateTaskTitle($conn, $taskId, $newTitle);
+    }
+
+    unset($_SESSION['edit_task_id']);
+
+    header("Location: ../dashboard.php");
+    exit();
+}

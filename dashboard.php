@@ -33,6 +33,20 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
             <button type="submit"><?= $lang["add"] ?? "Add" ?></button>
         </form>
 
+        <?php if (isset($_SESSION['edit_task_id'])): ?>
+
+            <form action="app/task_handler.php" method="POST">
+                <input type="hidden" name="task_id" value="<?= $_SESSION['edit_task_id'] ?>">
+
+                <input type="text" name="new_title" placeholder="Nowy tytuł">
+
+                <button type="submit" name="action" value="update">
+                    Zapisz
+                </button>
+            </form>
+
+        <?php endif; ?>
+
         <div class="tasks">
             <?php while ($task = $tasks->fetch_assoc()): ?>
                 <div class="task">
@@ -54,6 +68,13 @@ $tasks = getTasks($conn, $_SESSION['user_id']);
                             <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
                             <button type="submit" name="action" value="delete">
                                 Usuń
+                            </button>
+                        </form>
+
+                        <form action="app/task_handler.php" method="POST">
+                            <input type="hidden" name="task_id" value="<?= $task['id'] ?>">
+                            <button type="submit" name="action" value="edit">
+                                Edytuj tytuł
                             </button>
                         </form>
 

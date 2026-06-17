@@ -1,3 +1,11 @@
+## 🧪 Dane testowe
+
+- link do aplikacji: https://projektportfoliomenedzerzadan.freedev.app/
+- Login: test  
+- Hasło: test123
+
+---
+
 # Task Manager – Projekt Portfolio (PHP)
 
 Prosta aplikacja do zarządzania zadaniami stworzona w PHP jako projekt portfolio.  
